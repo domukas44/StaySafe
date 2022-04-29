@@ -16,7 +16,7 @@ const Navigation = () => {
       <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="SignIn">
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="Home" component={BottomTabNavigator} />
+          <Stack.Screen name="Root" component={BottomTabNavigator} />
       </Stack.Navigator>
   )
 }

@@ -17,7 +17,7 @@ const navigation = useNavigation();
 const onSignInPress = () => {
   
   //validate user
-  password === username? navigation.navigate("Home") : Alert.alert(
+  password === username? navigation.navigate("Root") : Alert.alert(
     "Failed.",
     "Wrong username or password"
   )
