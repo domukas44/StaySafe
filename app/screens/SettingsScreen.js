@@ -8,7 +8,9 @@ const SettingsScreen = () => {
 const navigation = useNavigation();
 
 const onLogOut = () => {
-    navigation.navigate("SignIn");
+    navigation.navigate("Drawer", {
+      screen: "Backup",
+    });
   }
   
   return (

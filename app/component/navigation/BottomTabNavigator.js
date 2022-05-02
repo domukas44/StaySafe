@@ -4,12 +4,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FriendsScreen from '../../screens/FriendsScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
 import { StyleSheet } from 'react-native';
+import DrawerNavigation from './DrawerNavigation';
 
 // Screens
 import HomeScreen from '../../screens/HomeScreen';
 
 //Screen names
-const homeName = "Home";
+const homeName = "Main";
 const friendsScreen = "Friends";
 const settingsScreen = "Settings";
 
@@ -40,11 +41,12 @@ function BottomTabNavigator() {
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'grey',
           tabBarLabelStyle: { paddingBottom: 10, fontSize: 10 },
-          tabBarStyle: {padding: 10, height: 75}
+          tabBarStyle: {padding: 10, height: 75},
+          headerShown: false,
 
         })}>
 
-        <Tab.Screen name={homeName} component={HomeScreen} />
+        <Tab.Screen name={homeName} component={DrawerNavigation} />
         <Tab.Screen name={friendsScreen} component={FriendsScreen} />
         <Tab.Screen name={settingsScreen} component={SettingsScreen} />
 

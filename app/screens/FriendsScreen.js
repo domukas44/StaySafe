@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     position: 'absolute',
     right: 15,
-    top: 10
+    top: 30
   },
   headerContent:{
     padding:10,
@@ -100,10 +100,11 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     position: 'absolute',
     left: 30,
-    top: 20,
+    top: 40,
   },
   body: {
     padding:30,
+    top: 25
   },
   box: {
     borderRadius: 5,
