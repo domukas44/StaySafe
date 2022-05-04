@@ -15,9 +15,19 @@ import {
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export function DrawerContent(props) {
+
+    //Guidelines screens
+    const BackUpScreen = "Smartphone Backup";
+    const LockScreen = "Smartphone locking";
+    const WifiSecurity = "Wi-fi network security";
+    const AppUpdates = "Mobile apps updates";
+    const PermissionManager = "Apps permission manager";
+    const Fishing = "Phishing attack protection";
+    const Location = "Location services";
+    const size = 16;
 
     return(
         <View style={{flex:1}}>
@@ -45,64 +55,58 @@ export function DrawerContent(props) {
 
                     <Drawer.Section style={styles.drawerSection}>
                         <DrawerItem 
-                            // icon={({color, size}) => (
-                            //     <Icon 
-                            //     name="home-outline" 
-                            //     color={color}
-                            //     size={size}
-                            //     />
-                            // )}
-                            label="Home"
-                            onPress={() => {props.navigation.navigate('Home')}}
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'lock-closed-outline'} size={size} />
+                            )}
+                            label={LockScreen}
+                            onPress={() => {props.navigation.navigate(LockScreen)}}
                         />
                         <DrawerItem 
-                            // icon={({color, size}) => (
-                            //     <Icon 
-                            //     name="account-outline" 
-                            //     color={color}
-                            //     size={size}
-                            //     />
-                            // )}
-                            label="Smartphone locking"
-                            onPress={() => {props.navigation.navigate('Lock')}}
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'cloud-upload-outline'} size={size} />
+                            )}
+                            label={BackUpScreen}
+                            onPress={() => {props.navigation.navigate(BackUpScreen)}}
                         />
                         <DrawerItem 
-                            // icon={({color, size}) => (
-                            //     <Icon 
-                            //     name="bookmark-outline" 
-                            //     color={color}
-                            //     size={size}
-                            //     />
-                            // )}
-                            label="Wifi security"
-                            onPress={() => {props.navigation.navigate('Wifi')}}
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'wifi'} size={size} />
+                            )}
+                            label={WifiSecurity}
+                            onPress={() => {props.navigation.navigate(WifiSecurity)}}
                         />
                         <DrawerItem 
-                            // icon={({color, size}) => (
-                            //     <Icon 
-                            //     name="settings-outline" 
-                            //     color={color}
-                            //     size={size}
-                            //     />
-                            // )}
-                            label="Settings"
-                            onPress={() => {props.navigation.navigate('SettingsScreen')}}
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'phone-portrait-outline'} size={size} />
+                            )}
+                            label={AppUpdates}
+                            onPress={() => {props.navigation.navigate(AppUpdates)}}
                         />
                         <DrawerItem 
-                            // icon={({color, size}) => (
-                            //     <Icon 
-                            //     name="account-check-outline" 
-                            //     color={color}
-                            //     size={size}
-                            //     />
-                            // )}
-                            label="Support"
-                            onPress={() => {props.navigation.navigate('SupportScreen')}}
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'newspaper-outline'} size={size} />
+                            )}
+                            label={PermissionManager}
+                            onPress={() => {props.navigation.navigate(PermissionManager)}}
+                        />
+                        <DrawerItem 
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'mail-unread-outline'} size={size} />
+                            )}
+                            label={Fishing}
+                            onPress={() => {props.navigation.navigate(Fishing)}}
+                        />
+                        <DrawerItem 
+                            icon={() => (
+                                <Ionicons style={styles.icon} name={'location-outline'} size={size} />
+                            )}
+                            label={Location}
+                            onPress={() => {props.navigation.navigate(Location)}}
                         />
                     </Drawer.Section>
-                    <Drawer.Section title="Preferences">
+                    {/* <Drawer.Section title="Preferences">
                         
-                    </Drawer.Section>
+                    </Drawer.Section> */}
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
@@ -123,6 +127,10 @@ export function DrawerContent(props) {
 }
 
 const styles = StyleSheet.create({
+    icon: {
+        padding:0,
+        marginRight: -20,
+    },
     drawerContent: {
       flex: 1,
     },
