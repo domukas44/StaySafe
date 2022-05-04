@@ -26,11 +26,11 @@ const HomeScreen = () => {
         <Text style={[styles.protectionLevel, {textAlign: 'center'}]}>{protectionLevel}</Text>
         <Text style={styles.suggestiontext}>Suggestions</Text>
         <Suggestion icon='lock-closed-outline' label='Smartphone lock' 
-          body="simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" buttonText="clear now" onpress={() => {}}/>
+          body="When your Smartphone has no lock screen password, your sensitive information can be accessed by other people" buttonText="clear now" onpress={() => {}}/>
           <Suggestion icon='wifi' label='Wifi security' 
-          body="simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" buttonText="scan now" onpress={() => {}}/>
+          body="Scan your Wi-fi network to identify any security flaws" buttonText="scan now" onpress={() => {}}/>
           <Suggestion icon='cloud-upload-outline' label='Smartphone Backup' 
-          body="simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" buttonText="back up now" onpress={() => {}}/>
+          body="When your Smartphone has no backup, you are risking losing your data when the unplanned happens." buttonText="back up now" onpress={() => {}}/>
       </View>
     </ScrollView>
     // <View style={styles.root}>
