@@ -30,7 +30,7 @@ export function DrawerContent(props) {
     const size = 16;
 
     return(
-        <View style={{flex:1}}>
+        <View style={{flex:1, backgroundColor: '#ffbf00'}}>
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
                     <View style={styles.userInfoSection}>

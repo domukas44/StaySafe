@@ -21,7 +21,7 @@ const Suggestion = ({icon, label, body, buttonText, onpress}) => {
 
 const styles = StyleSheet.create({
     suggestionContainer: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#ffbf00',
         marginTop: 5,
     },
     greetingText: {

@@ -14,6 +14,7 @@ import FishingProtectionScreen from '../../screens/FishingProtectionScreen';
 import AppsUpdateScreen from '../../screens/AppsUpdateScreen';
 import LocationServicesScreen from '../../screens/LocationServicesScreen';
 import PermissionManagerScreen from '../../screens/PermissionManagerScreen';
+import PermissionListScreen from '../../screens/PermissionListScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ const AppUpdates = "Mobile apps updates";
 const PermissionManager = "Apps permission manager";
 const Fishing = "Phishing attack protection";
 const Location = "Location services";
+const PermissionList = "PermissionList"
 
 const Navigation = () => {
   return (
@@ -42,6 +44,7 @@ const Navigation = () => {
           <Stack.Screen name={PermissionManager} component={PermissionManagerScreen} />
           <Stack.Screen name={Fishing} component={FishingProtectionScreen} />
           <Stack.Screen name={Location} component={LocationServicesScreen} />
+          <Stack.Screen name={PermissionList} component={PermissionListScreen} options={{appName:"appName", permissions:[]}} />
       </Stack.Navigator>
   )
 }

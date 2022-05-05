@@ -5,7 +5,7 @@ import Navigation from './app/component/navigation';
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer style={styles.color}>
       <SafeAreaView style= {styles.root}>
         <Navigation/>
       </SafeAreaView>
@@ -16,6 +16,8 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  color: {
   },
   container: {
     flex: 1,

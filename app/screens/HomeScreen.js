@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Suggestion from '../component/Suggestion';
 
+const color = '#ffbf00';
+
 const HomeScreen = () => {
 
   const navigation = useNavigation();
@@ -18,7 +20,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <ScrollView showsVerticalScrollIndicator>
+    <ScrollView showsVerticalScrollIndicator style={styles.main}>
       <View style={styles.blackout}>
         <Text style={[styles.greetingText, {textAlign: 'center'}]}>Hello, {user}</Text>
         <Text style={[styles.protectionLevelLabel, {textAlign: 'center'}]}>Your protection level is</Text>
@@ -55,14 +57,19 @@ const styles = StyleSheet.create({
     height: '100%',
     padding: 10,
   },
+  main: {
+    height: '100%',
+    backgroundColor: '#ffffff',
+  },
   suggestiontext: {
     marginTop: 20,
-    color: '#121212',
+    color: '#009FDF',
     fontSize: 30,
     marginBottom: 10,
+    fontWeight: 'bold',
   },
   greetingText: {
-    color: '#121212',
+    color: color,
     fontSize: 15,
   },
   inline: {
@@ -74,11 +81,11 @@ const styles = StyleSheet.create({
     width: '65%',
   },
   protectionLevelLabel: {
-    color: '#121212',
+    color: color,
     fontSize: 20,
   },
   protectionLevel: {
-    color: '#cf6679',
+    color: color,
     fontSize: 50,
     fontWeight: 'bold',
   },
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top:5,
     right:5,
-    color: '#121212',
+    color: color,
     fontSize: 15,
     width: 70,
     textAlign: 'center'
