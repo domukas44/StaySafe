@@ -1,18 +1,31 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector, useDispatch } from 'react-redux'
+import { setLocation } from '../../actions';
+import { useNavigation } from '@react-navigation/native';
 
 const LocationServicesScreen = () => {
+
+  const setUpLocation = () => {
+    dispatch(setLocation(true));
+    navigation.goBack();
+  }
+
+  const {LocationIsOff} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.blackout}>
       <Text style={styles.label}>Location services</Text>
       <Text style={styles.question}>Turn off location sharing</Text>
       <Text style={styles.body}>Having location services can let other people know your patterns and current location. So you should turn it off when you are not using it. </Text>
       <Ionicons style={{paddingEnd: 10, marginTop: 50, textAlign: 'center'}} name={'location-outline'} size={240} />
-      <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>Turn off location</Text>
-      </Pressable>
+      <TouchableOpacity onPress={setUpLocation} style={styles.button} disabled={LocationIsOff}>
+        <Text style={styles.buttonText}>{LocationIsOff? "Your location is off" : "Turn of location"}</Text>
+      </TouchableOpacity>
     </SafeAreaView>
     
   )

@@ -9,20 +9,14 @@ import {
   FlatList, Pressable, 
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux'
 
 
 const FriendsScreen = () => {
 
     const [icon, setIcon] = useState('person-add-outline');
-
-    const  data =  [
-         {id:1, image: "https://bootdey.com/img/Content/avatar/avatar6.png", username:"Tom", experience: 123},
-         {id:2, image: "https://bootdey.com/img/Content/avatar/avatar2.png", username:"John", experience: 124},
-         {id:3, image: "https://bootdey.com/img/Content/avatar/avatar3.png", username:"Tim", experience: 134},
-         {id:4, image: "https://bootdey.com/img/Content/avatar/avatar4.png", username:"Demarcus", experience: 142},
-         {id:5, image: "https://bootdey.com/img/Content/avatar/avatar1.png", username:"Jerome", experience: 154},
-         {id:6, image: "https://bootdey.com/img/Content/avatar/avatar6.png", username:"User", experience: 122},
-      ];
+    const {friends, experience} = useSelector(state => state.userReducer);
+    const user = [{id:friends.length, image: "https://bootdey.com/img/Content/avatar/avatar5.png", username:"User", experience: experience}]
 
     return (
       <View style={styles.container}>
@@ -40,9 +34,9 @@ const FriendsScreen = () => {
             <FlatList 
               style={styles.container} 
               enableEmptySections={true}
-              data={data.sort(function(a,b) {
-                  return ((a.experience > b.experience) ? -1 : (b.experience > a.experience) ? 1 : 0)
-              })}
+              data={[...friends, ...user].sort(function(a,b) {
+                return ((a.experience > b.experience) ? -1 : (b.experience > a.experience) ? 1 : 0)
+            })}
               keyExtractor= {(item) => {
                 return item.id;
               }}

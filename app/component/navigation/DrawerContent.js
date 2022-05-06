@@ -16,8 +16,11 @@ import {
     DrawerItem
 } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux'
 
 export function DrawerContent(props) {
+
+    const {friends, experience} = useSelector(state => state.userReducer);
 
     //Guidelines screens
     const BackUpScreen = "Smartphone Backup";
@@ -43,11 +46,11 @@ export function DrawerContent(props) {
 
                         <View style={styles.row}>
                             <View style={styles.section}>
-                                <Paragraph style={[styles.paragraph, styles.caption]}>6</Paragraph>
+                                <Paragraph style={[styles.paragraph, styles.caption]}>{friends.length}</Paragraph>
                                 <Caption style={styles.caption}>Friends</Caption>
                             </View>
                             <View style={styles.section}>
-                                <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
+                                <Paragraph style={[styles.paragraph, styles.caption]}>{experience}</Paragraph>
                                 <Caption style={styles.caption}>Experience Points</Caption>
                             </View>
                         </View>

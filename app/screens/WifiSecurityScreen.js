@@ -1,9 +1,22 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector, useDispatch } from 'react-redux'
+import { setWifi } from '../../actions';
+import { useNavigation } from '@react-navigation/native';
 
 const WifiSecurityScreen = () => {
+
+  const setUpWifi = () => {
+    dispatch(setWifi(true));
+    navigation.goBack();
+  }
+
+  const {wifiIsScanned} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.blackout}>
       <Text style={styles.label}>Wi-fi network check</Text>
@@ -13,6 +26,9 @@ const WifiSecurityScreen = () => {
       <Pressable style={styles.button}>
         <Text style={styles.buttonText}>Scan Wi-fi network</Text>
       </Pressable>
+      <TouchableOpacity onPress={setUpWifi} style={styles.button} disabled={wifiIsScanned}>
+        <Text style={styles.buttonText}>{wifiIsScanned? "Wi-fi is safe" : "Scan Wi-fi network"}</Text>
+      </TouchableOpacity>
     </SafeAreaView>
     
   )

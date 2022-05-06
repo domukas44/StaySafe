@@ -1,22 +1,70 @@
 import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native'
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import CustomButton from '../component/CustomButton'
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Suggestion from '../component/Suggestion';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
+import { setLock, setBackup } from '../../actions';
 
 const color = '#ffbf00';
+
+// const mapStateToProps = (state) => {
+//   const { redux } = state
+//   return { redux }
+// };
 
 const HomeScreen = () => {
 
   const navigation = useNavigation();
   const adminEnum = { HIGH: 'HIGH', LOW: 'LOW', MEDIUM: 'MEDIUM'};
   const user = "Dominic";
-  const experience = 123;
-  const [protectionLevel, setProtectionLevel] = useState(adminEnum.LOW);
+  //const [experience, setExperience] = useState("123");
 
-  const onCLickLockScreen = () => {
-    navigation.navigate("Lock");
+  const BackUpScreen = "Smartphone Backup";
+  const LockScreen = "Smartphone locking";
+  const WifiSecurity = "Wi-fi network security";
+  const AppUpdates = "Mobile apps updates";
+  const Fishing = "Phishing attack protection";
+  const Location = "Location services";
+
+  //const BackUpOn = get
+  
+  const suggestions = [
+    {name: BackUpScreen, icon: 'cloud-upload-outline', body: "When your Smartphone has no backup, you are risking losing your data when the unplanned happens.", show: !hasBackUp, buttonText: "Set up backup"},
+    {name: LockScreen, icon: 'lock-closed-outline', body: "When your Smartphone has no lock screen password, your sensitive information can be accessed by other people", show: !hasLock, buttonText: "Set password"},
+    //{name: WifiSecurity, icon: 'wifi', body: "Scan your Wi-fi network to identify any security flaws", show: !wifiIsScanned, buttonText: "Scan Wi-fi"},
+    //{name: AppUpdates, icon: 'phone-portrait-outline', body: "Look at apps that you can update", show: !allAppsUpdated, buttonText: "Check apps"},
+    {name: Fishing, icon: 'mail-unread-outline', body: "Phishing is a type of social engineering attack often used to steal user data, including login credentials and credit card numbers. It occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening an email, instant message, or text message.", show: !hasFishingProtection, buttonText: "Protect me"},
+    {name: Location, icon: 'location-outline', body: "Having location services can let other people know your patterns and current location. So you should turn it off when you are not using it.", show: !LocationIsOff, buttonText: "Set up Location"},
+  ]
+
+  const pressed = () => {
+    console.log(hasLock)
+    dispatch(setLock(false));
+  }
+
+  const xp = () => {
+    console.log(experience);
+  }
+   
+  const {experience, hasBackUp, hasLock, wifiIsScanned, allAppsUpdated, hasFishingProtection, LocationIsOff} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
+
+  const GetProtectionLevel = () => {
+    let risks = 0;
+    if(!hasBackUp)
+    risks++
+    if(!hasLock)
+    risks++
+    if(!hasFishingProtection)
+    risks++
+    if(!LocationIsOff)
+    risks++
+
+    return risks > 2 ? adminEnum.LOW : risks > 0 ? adminEnum.MEDIUM : adminEnum.HIGH;
   }
 
   return (
@@ -25,34 +73,49 @@ const HomeScreen = () => {
         <Text style={[styles.greetingText, {textAlign: 'center'}]}>Hello, {user}</Text>
         <Text style={[styles.protectionLevelLabel, {textAlign: 'center'}]}>Your protection level is</Text>
         <Text style={styles.experience}>You have <Text style={[{color: '#009FDF', fontWeight: 'bold' }]}>{experience} xp</Text></Text>
-        <Text style={[styles.protectionLevel, {textAlign: 'center'}]}>{protectionLevel}</Text>
+        <Text style={[styles.protectionLevel, {textAlign: 'center'}, styles[`${GetProtectionLevel()}`]]}>{GetProtectionLevel()}</Text>
         <Text style={styles.suggestiontext}>Suggestions</Text>
-        <Suggestion icon='lock-closed-outline' label='Smartphone lock' 
-          body="When your Smartphone has no lock screen password, your sensitive information can be accessed by other people" buttonText="clear now" onpress={() => {}}/>
-          <Suggestion icon='wifi' label='Wifi security' 
-          body="Scan your Wi-fi network to identify any security flaws" buttonText="scan now" onpress={() => {}}/>
-          <Suggestion icon='cloud-upload-outline' label='Smartphone Backup' 
-          body="When your Smartphone has no backup, you are risking losing your data when the unplanned happens." buttonText="back up now" onpress={() => {}}/>
+        {/* doesnt rerender when some guidelines should not be visible */}
+        {/* <View>
+          {suggestions.map((item, index) => {
+            return item.show? <Suggestion icon={item.icon} label={item.name} body={item.body} buttonText={item.buttonText}  onpress={() => {navigation.navigate(item.name)}} key={index}/> : null;           
+          })}
+        </View> */}
+        <View>
+          {
+            !hasLock && 
+              <Suggestion icon={suggestions[1].icon} label={suggestions[1].name} body={suggestions[1].body} buttonText={suggestions[1].buttonText}  onpress={() => {navigation.navigate(suggestions[1].name)}}/>
+          }
+          {
+            !hasBackUp && 
+              <Suggestion icon={suggestions[0].icon} label={suggestions[0].name} body={suggestions[0].body} buttonText={suggestions[0].buttonText}  onpress={() => {navigation.navigate(suggestions[0].name)}}/>
+          }
+          {
+            !hasFishingProtection && 
+              <Suggestion icon={suggestions[2].icon} label={suggestions[2].name} body={suggestions[2].body} buttonText={suggestions[2].buttonText}  onpress={() => {navigation.navigate(suggestions[2].name)}}/>
+          }
+          {
+            !LocationIsOff && 
+              <Suggestion icon={suggestions[3].icon} label={suggestions[3].name} body={suggestions[3].body} buttonText={suggestions[3].buttonText}  onpress={() => {navigation.navigate(suggestions[3].name)}}/>
+          }
+          {
+            LocationIsOff &&  hasBackUp &&  hasFishingProtection && hasLock && 
+              <Suggestion icon={"checkmark-outline"} label={"You are safe!"} body={"There are no suggestions for you to do. Check guidelines list for more information."} buttonText={""}  onpress={() => {}}/>
+          }
+          
+        </View>
       </View>
     </ScrollView>
-    // <View style={styles.root}>
-    //   <Text style={styles.experience}>xp points</Text>
-    //   <Pressable style={styles.container}>
-    //   <Text style={styles.text}>protection level:</Text>
-    //   <Text style={styles.text}>{protectionLevel}</Text>
-    //   </Pressable>
-
-    //   {/* <CustomButton onPress={onCLickLockScreen} text="Click me"></CustomButton> */}
-    //   <View style={styles.suggestionContainer}>
-    //     <Text style={styles.text}>Suggestions</Text>
-    //   </View>
-    //   <Pressable style={styles.suggestionButton}>
-    //     <Text style={styles.suggestionButtonText}>Wifi security</Text>
-    //   </Pressable>
-    // </View>
   )
 }
 const styles = StyleSheet.create({
+  HIGH: {
+    color: 'green',
+  },
+  LOW: {
+    color: 'red',
+  },
+  MEDIUM: {},
   blackout: {
     height: '100%',
     padding: 10,
@@ -150,4 +213,5 @@ const styles = StyleSheet.create({
   },
 })
 
-export default HomeScreen
+//export default connect(mapStateToProps)(HomeScreen);
+export default(HomeScreen);

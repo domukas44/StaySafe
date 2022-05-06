@@ -1,18 +1,31 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector, useDispatch } from 'react-redux'
+import { setFishing } from '../../actions';
+import { useNavigation } from '@react-navigation/native';
 
 const FishingProtectionScreen = () => {
+
+  const setUpPhishing = () => {
+    dispatch(setFishing(true));
+    navigation.navigate("Main");
+  }
+
+  const {hasFishingProtection} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.blackout}>
       <Text style={styles.label}>Phishing attack protection</Text>
       <Text style={styles.question}>What are Phishing attacks?</Text>
       <Text style={styles.body}>Phishing is a type of social engineering attack often used to steal user data, including login credentials and credit card numbers. It occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening an email, instant message, or text message. </Text>
       <Ionicons style={{paddingEnd: 10, marginTop: 50, textAlign: 'center'}} name={'mail-unread-outline'} size={240} />
-      <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>Turn on Phishing protection</Text>
-      </Pressable>
+      <TouchableOpacity onPress={setUpPhishing} style={styles.button} disabled={hasFishingProtection}>
+        <Text style={styles.buttonText}>{hasFishingProtection? "Protection enabled" : "Enable phishing protection"}</Text>
+      </TouchableOpacity>
     </SafeAreaView>
     
   )

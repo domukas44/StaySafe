@@ -11,7 +11,7 @@ const Suggestion = ({icon, label, body, buttonText, onpress}) => {
         </View>
         <View style={styles.inline}>
         <Text style={[styles.bodyText, {paddingEnd: 10, marginLeft: 25}]}>{body}</Text>
-        <Pressable onpress={onpress} style={{alignSelf: 'center', width: 100}}>
+        <Pressable onPress={onpress} style={{alignSelf: 'center', width: 100}}>
           <Text style={[styles.protectionLevelLabel]}>{buttonText}</Text>
         </Pressable>
         </View>
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     protectionLevelLabel: {
       color: '#121212',
       fontSize: 20,
+      textAlign: 'center',
     },
    buttonText: {
         color: '#121212',
