@@ -29,7 +29,7 @@ const AppUpdates = "Mobile apps updates";
 const PermissionManager = "Apps permission manager";
 const Fishing = "Phishing attack protection";
 const Location = "Location services";
-const PermissionList = "PermissionList";
+const PermissionList = "Allowed permissions";
 const Modal = "Modal";
 
 const Navigation = () => {
@@ -40,22 +40,51 @@ const Navigation = () => {
     >
       <Stack.Screen name={SignInName} component={SignInScreen} />
       <Stack.Screen name={SignUpName} component={SignUpScreen} />
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name={BackUpScreen} component={SmartphoneBackupScreen} />
-      <Stack.Screen name={LockScreen} component={SmartphoneLockScreen} />
-      <Stack.Screen name={WifiSecurity} component={WifiSecurityScreen} />
-      <Stack.Screen name={AppUpdates} component={AppsUpdateScreen} />
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name={BackUpScreen}
+        component={SmartphoneBackupScreen}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={LockScreen}
+        component={SmartphoneLockScreen}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={WifiSecurity}
+        component={WifiSecurityScreen}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={AppUpdates}
+        component={AppsUpdateScreen}
+        options={{ headerShown: true }}
+      />
       <Stack.Screen
         name={PermissionManager}
         component={PermissionManagerScreen}
+        options={{ headerShown: true }}
       />
-      <Stack.Screen name={Fishing} component={FishingProtectionScreen} />
-      <Stack.Screen name={Location} component={LocationServicesScreen} />
+      <Stack.Screen
+        name={Fishing}
+        component={FishingProtectionScreen}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={Location}
+        component={LocationServicesScreen}
+        options={{ headerShown: true }}
+      />
       <Stack.Screen name={Modal} component={ModalScreen} />
       <Stack.Screen
         name={PermissionList}
         component={PermissionListScreen}
-        options={{ appName: "appName" }}
+        options={{ appName: "appName", headerShown: true }}
       />
     </Stack.Navigator>
   );

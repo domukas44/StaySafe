@@ -12,6 +12,7 @@ import {
   SET_NOT_SEND_START_TIME,
   SET_START_TIME,
   Set_FIRST_TIME,
+  RESET_STATE,
 } from "./actions";
 
 const INITIAL_STATE = {
@@ -315,6 +316,25 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         firstLogin: action.payload,
+      };
+    case RESET_STATE:
+      return {
+        ...state,
+        experience: INITIAL_STATE.experience,
+        friends: INITIAL_STATE.friends,
+        hasBackUp: false,
+        hasLock: false,
+        wifiIsScanned: false,
+        allAppsUpdated: false,
+        hasFishingProtection: false,
+        LocationIsOff: false,
+        getNotificationsStartTime: "16",
+        getNotificationsEndTime: "20",
+        DontGetNotificationsStartTime: "15",
+        DontGetNotificationsEndTime: "18",
+        firstLogin: false,
+        appUpdates: INITIAL_STATE.appUpdates,
+        appPermissions: INITIAL_STATE.appPermissions,
       };
     default:
       return state;

@@ -22,7 +22,7 @@ const AppPermissionItem = ({
     <SafeAreaView>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("PermissionList", {
+          navigation.navigate("Allowed permissions", {
             appName: appName,
           });
         }}

@@ -66,13 +66,10 @@ const HomeScreen = () => {
   ];
 
   const pressed = () => {
-    console.log(hasLock);
     dispatch(setLock(false));
   };
 
-  const xp = () => {
-    console.log(experience);
-  };
+  const xp = () => {};
 
   const {
     experience,

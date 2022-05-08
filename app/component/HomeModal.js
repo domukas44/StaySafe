@@ -9,7 +9,6 @@ const HomeModal = () => {
   const navigation = useNavigation();
   const { hasBackUp, hasLock, hasFishingProtection, LocationIsOff } =
     useSelector((state) => state.userReducer);
-  console.log(modalVisible);
   const BackUpScreen = "Smartphone Backup";
   const LockScreen = "Smartphone locking";
   const AppUpdates = "Mobile apps updates";
@@ -21,7 +20,6 @@ const HomeModal = () => {
   };
 
   const lock = () => {
-    console.log("lock");
     navigation.navigate(LockScreen);
   };
   const backup = () => {

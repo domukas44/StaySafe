@@ -10,7 +10,9 @@ import {
   setDoNotSendStartTime,
   setEndTime,
   setStartTime,
+  resetState,
 } from "../../actions";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -32,6 +34,10 @@ const SettingsScreen = () => {
     DontGetNotificationsEndTime,
   } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
+
+  const resetStates = () => {
+    dispatch(resetState());
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -77,10 +83,18 @@ const SettingsScreen = () => {
           ></TextInput>
         </View>
       )}
+      <Pressable style={styles.reset} onPress={resetStates}>
+        <Text>Reset data</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
+  reset: {
+    position: "absolute",
+    bottom: 20,
+    right: 10,
+  },
   inline: {
     flexDirection: "row",
     marginTop: 10,
