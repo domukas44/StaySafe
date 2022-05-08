@@ -2,20 +2,23 @@ import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import AppPermissionListItem from "../component/AppPermissionListItem";
 import { useRoute } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
+import { removePermission } from "../../actions";
 
 const PermissionListScreen = () => {
   const route = useRoute();
-  const { appName, permissions = [] } = route.params;
+  const { appName } = route.params;
+  const { appPermissions } = useSelector((state) => state.userReducer);
 
-  const permissionLabels = [
-    { label: "location", value: "location-outline" },
-    { label: "calls", value: "call-outline" },
-    { label: "storage", value: "cloud-outline" },
-    { label: "camera", value: "camera-outline" },
-    { label: "photos", value: "image-outline" },
-    { label: "mic", value: "mic-outline" },
-    { label: "calendar", value: "calendar-outline" },
-  ];
+  const currentAppPermissions = appPermissions.find((app) => {
+    return app.appName == appName;
+  });
+
+  const dispatch = useDispatch();
+
+  const onAppPermissioDisable = (permission) => {
+    dispatch(removePermission({ appName: appName, permission: permission }));
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -24,12 +27,13 @@ const PermissionListScreen = () => {
       <View>
         {
           //TODO: show only the permissons that come from params
-          permissionLabels.map((element, index) => {
+          currentAppPermissions.permissions.map((element, index) => {
             return (
               <AppPermissionListItem
-                icon={element.value}
-                permission={element.label}
+                icon={element}
+                permission={element}
                 key={index}
+                onpress={onAppPermissioDisable}
               />
             );
           })
@@ -48,6 +52,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 23,
     marginTop: 20,
+    marginLeft: 15,
   },
   text: {
     fontSize: 26,
