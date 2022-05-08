@@ -10,7 +10,7 @@ import React from "react";
 import AppUpdateItem from "../component/AppUpdateItem";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
-import { updateApp } from "../../actions";
+import { updateApp, updateAllApps } from "../../actions";
 
 const AppsUpdateScreen = () => {
   const { appUpdates } = useSelector((state) => state.userReducer);
@@ -20,6 +20,14 @@ const AppsUpdateScreen = () => {
     ToastAndroid.show("Nice! You earned 1 xp", ToastAndroid.SHORT);
     dispatch(updateApp(appName));
   };
+
+  const updateAll = () => {
+    ToastAndroid.show(
+      `Nice! You earned ${appUpdates.length} xp`,
+      ToastAndroid.SHORT
+    );
+    dispatch(updateAllApps());
+  };
   //TODO: add update all functionality and back buttons
 
   return (
@@ -27,7 +35,12 @@ const AppsUpdateScreen = () => {
       <SafeAreaView>
         <View style={styles.border}>
           <Text style={styles.text}>App updates</Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              updateAll();
+            }}
+          >
             <Text style={styles.buttonText}>Update all</Text>
           </TouchableOpacity>
         </View>

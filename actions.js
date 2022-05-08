@@ -12,6 +12,7 @@ export const SET_NOT_SEND_START_TIME = "SET_NOT_SEND_START_TIME";
 export const SET_NOT_SEND_END_TIME = "SET_NOT_SEND_END_TIME";
 export const Set_FIRST_TIME = "Set_FIRST_TIME";
 export const RESET_STATE = "RESET_STATE";
+export const UPDATE_ALL_APPS = "UPDATE_ALL_APPS";
 
 export const setBackup = (backup) => (dispatch) => {
   dispatch({ type: SET_BACKUP, payload: backup });
@@ -99,5 +100,11 @@ export const resetState = (reset) => (dispatch) => {
   dispatch({
     type: RESET_STATE,
     payload: reset,
+  });
+};
+
+export const updateAllApps = () => (dispatch) => {
+  dispatch({
+    type: UPDATE_ALL_APPS,
   });
 };

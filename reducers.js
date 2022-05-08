@@ -13,6 +13,7 @@ import {
   SET_START_TIME,
   Set_FIRST_TIME,
   RESET_STATE,
+  UPDATE_ALL_APPS,
 } from "./actions";
 
 const INITIAL_STATE = {
@@ -335,6 +336,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         firstLogin: false,
         appUpdates: INITIAL_STATE.appUpdates,
         appPermissions: INITIAL_STATE.appPermissions,
+      };
+    case UPDATE_ALL_APPS:
+      return {
+        ...state,
+        experience: state.appUpdates.length + state.experience,
+        appUpdates: [],
       };
     default:
       return state;

@@ -98,6 +98,9 @@ const HomeScreen = () => {
   };
 
   useEffect(() => {
+    // navigation.addListener("beforeRemove", (e) => {
+    //   return;
+    // });
     if (firstLogin) {
       dispatch(setFirstTime(false));
       navigation.navigate("Modal");
