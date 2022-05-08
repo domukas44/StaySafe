@@ -14,6 +14,7 @@ const AppUpdateItem = ({
   appName = "placeholder",
   size,
   color = "black",
+  onpress,
 }) => {
   return (
     <SafeAreaView>
@@ -23,7 +24,12 @@ const AppUpdateItem = ({
           <Text style={styles.text}>{appName}</Text>
           <Text style={styles.size}>{size}</Text>
         </View>
-        <TouchableOpacity style={[styles.border]}>
+        <TouchableOpacity
+          onPress={() => {
+            onpress(appName);
+          }}
+          style={[styles.border]}
+        >
           <Text style={[styles.updateButton]}>Update</Text>
         </TouchableOpacity>
       </View>

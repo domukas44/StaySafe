@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ToastAndroid,
+} from "react-native";
 import React from "react";
 import AppPermissionListItem from "../component/AppPermissionListItem";
 import { useRoute } from "@react-navigation/native";
@@ -17,6 +23,7 @@ const PermissionListScreen = () => {
   const dispatch = useDispatch();
 
   const onAppPermissioDisable = (permission) => {
+    ToastAndroid.show("Nice! You earned 1 xp", ToastAndroid.SHORT);
     dispatch(removePermission({ appName: appName, permission: permission }));
   };
 

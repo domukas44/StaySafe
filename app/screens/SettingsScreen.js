@@ -1,27 +1,90 @@
-import { View, Text, StyleSheet, TextInput  } from 'react-native'
-import React from 'react';
-import CustomButton from '../component/CustomButton';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, TextInput } from "react-native";
+import { React, useState } from "react";
+import CustomButton from "../component/CustomButton";
+import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Checkbox } from "react-native-paper";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setDoNotSendEndTime,
+  setDoNotSendStartTime,
+  setEndTime,
+  setStartTime,
+} from "../../actions";
 
 const SettingsScreen = () => {
+  const navigation = useNavigation();
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
-const navigation = useNavigation();
-  
+  const [startTime, setStartTime] = useState(getNotificationsStartTime);
+  const [endTime, setEndTime] = useState(getNotificationsEndTime);
+  const [notSendStartTime, setNotSendStartTime] = useState(
+    DontGetNotificationsStartTime
+  );
+  const [notSendEndTime, setNotSendEndTime] = useState(
+    DontGetNotificationsEndTime
+  );
+
+  const {
+    getNotificationsStartTime,
+    getNotificationsEndTime,
+    DontGetNotificationsStartTime,
+    DontGetNotificationsEndTime,
+  } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={styles.root}>
       <Text style={styles.text}>Settings</Text>
-      <Text style={styles.checkbox}>V Send notifications</Text>
-      <Text style={styles.question}>What time would you like to get notifications?</Text>
-      <TextInput style={styles.input} placeholder='start hour' ></TextInput>
-      <TextInput style={styles.input} placeholder='end hour' ></TextInput>
-      <Text style={styles.question}>Or just insert when you don't want to get notifications</Text>
-      <TextInput style={styles.input} placeholder='start hour' ></TextInput>
-      <TextInput style={styles.input} placeholder='end hour' ></TextInput>
+      <View style={styles.inline}>
+        <Checkbox
+          status={toggleCheckBox ? "checked" : "unchecked"}
+          onPress={() => {
+            setToggleCheckBox(!toggleCheckBox);
+          }}
+        ></Checkbox>
+        <Text style={styles.checkbox}>Send notifications</Text>
+      </View>
+      {toggleCheckBox && (
+        <View>
+          <Text style={styles.question}>
+            What time would you like to get notifications?
+          </Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="start hour"
+            // value={`${startTime} h`}
+            // onPressOut={setStartTime(value)}
+          ></TextInput>
+          <TextInput
+            style={styles.input}
+            placeholder="end hour"
+            // value={`${getNotificationsEndTime} h`}
+          ></TextInput>
+          <Text style={styles.question}>
+            Or just insert when you don't want to get notifications
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="start hour"
+            // value={`${DontGetNotificationsStartTime} h`}
+          ></TextInput>
+          <TextInput
+            style={styles.input}
+            placeholder="end hour"
+            // value={`${DontGetNotificationsEndTime} h`}
+          ></TextInput>
+        </View>
+      )}
     </SafeAreaView>
-  )
-}
+  );
+};
 const styles = StyleSheet.create({
+  inline: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
   input: {
     height: 40,
     margin: 12,
@@ -31,22 +94,24 @@ const styles = StyleSheet.create({
   question: {
     fontSize: 20,
     paddingTop: 20,
+    marginLeft: 15,
   },
   checkbox: {
-
+    fontSize: 17,
+    textAlignVertical: "center",
   },
   root: {
-      padding: 5,
-      height: '100%',
-      backgroundColor: '#ffffff',
+    padding: 5,
+    height: "100%",
+    backgroundColor: "#ffffff",
   },
   text: {
-      fontSize: 26,
-      fontWeight: 'bold',
-      paddingLeft: 10,
-      paddingTop: 10,
-      textAlign: 'center',
-  }
-})
+    fontSize: 26,
+    fontWeight: "bold",
+    paddingLeft: 10,
+    paddingTop: 10,
+    textAlign: "center",
+  },
+});
 
-export default SettingsScreen
+export default SettingsScreen;

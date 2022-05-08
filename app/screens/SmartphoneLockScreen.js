@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   useWindowDimensions,
+  ToastAndroid,
 } from "react-native";
 import { React } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,6 +18,7 @@ import lock from "../assets/images/lock.jpg";
 
 const SmartphoneLockScreen = () => {
   const setUpLock = () => {
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
     dispatch(setLock(true));
     navigation.goBack();
   };

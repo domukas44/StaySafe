@@ -12,13 +12,33 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 const AppPermissionListItem = ({
   icon = "alert-circle-outline",
   permission = "placeholder",
+  onpress,
 }) => {
+  const permissionLabels = [
+    { label: "Location", value: "location-outline" },
+    { label: "Calls", value: "call-outline" },
+    { label: "Storage", value: "cloud-outline" },
+    { label: "Camera", value: "camera-outline" },
+    { label: "Photos", value: "image-outline" },
+    { label: "Microphone", value: "mic-outline" },
+    { label: "Calendar", value: "calendar-outline" },
+  ];
+
+  const permissionIcon = permissionLabels.filter((element) => {
+    return element.label === icon;
+  });
+
   return (
     <SafeAreaView>
       <View style={styles.inline}>
-        <Ionicons name={icon} size={32} />
+        <Ionicons name={permissionIcon[0].value} size={32} />
         <Text style={styles.text}>{permission}</Text>
-        <Pressable style={[styles.border]}>
+        <Pressable
+          style={[styles.border]}
+          onPress={() => {
+            onpress(permission);
+          }}
+        >
           <Text style={styles.buttonText}>Disable</Text>
         </Pressable>
       </View>

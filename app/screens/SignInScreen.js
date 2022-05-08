@@ -8,7 +8,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import Logo from "../assets/images/logo.png";
+import Logo from "../assets/images/defence.png";
 import CustomInput from "../component/CustomInput";
 import CustomButton from "../component/CustomButton";
 import { useNavigation } from "@react-navigation/native";
@@ -25,6 +25,11 @@ const SignInScreen = () => {
     password === username
       ? navigation.navigate("Root")
       : Alert.alert("Failed.", "Wrong username or password");
+  };
+
+  const onSignInWIthOther = () => {
+    //validate user
+    navigation.navigate("Root");
   };
 
   const onForgotPasswordPress = () => {
@@ -71,13 +76,13 @@ const SignInScreen = () => {
 
         <CustomButton
           text={"Sign in with Facebook"}
-          onPress={onSignInWithFacebookPress}
+          onPress={onSignInWIthOther}
           bgColor="#e7eaf4"
           fgColor="#4765a9"
         />
         <CustomButton
           text={"Sign in with Google"}
-          onPress={onSignInWithGooglePress}
+          onPress={onSignInWIthOther}
           bgColor="#fae9ea"
           fgColor="#dd4d44"
         />

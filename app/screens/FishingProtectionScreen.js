@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Image,
+  ToastAndroid,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,8 +18,9 @@ import phishing from "../assets/images/phishing.png";
 
 const FishingProtectionScreen = () => {
   const setUpPhishing = () => {
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
     dispatch(setFishing(true));
-    navigation.navigate("Main");
+    navigation.goBack();
   };
 
   const { hasFishingProtection } = useSelector((state) => state.userReducer);

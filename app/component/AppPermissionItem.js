@@ -14,6 +14,7 @@ const AppPermissionItem = ({
   icon = "alert-circle-outline",
   appName = "placeholder",
   permissions = [],
+  color = "black",
 }) => {
   const navigation = useNavigation();
 
@@ -22,18 +23,17 @@ const AppPermissionItem = ({
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("PermissionList", {
-            permissions: permissions,
             appName: appName,
           });
         }}
         style={styles.border}
       >
         <View style={[styles.inline, styles.margin]}>
-          <Ionicons name={icon} size={40} />
+          <Ionicons name={icon} size={40} color={color} />
           <View style={styles.info}>
             <Text style={styles.text}>{appName}</Text>
             <Text style={styles.about}>
-              Uses {permissions.length} permissions
+              Using {permissions.length} permissions
             </Text>
           </View>
         </View>

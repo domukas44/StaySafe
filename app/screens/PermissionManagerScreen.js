@@ -2,21 +2,14 @@ import { View, Text, StyleSheet, ScrollView, useState } from "react-native";
 import React from "react";
 import AppPermissionItem from "../component/AppPermissionItem";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-const permissions = [
-  "location-outline",
-  "call-outline",
-  "cloud-outline",
-  "camera-outline",
-  "image-outline",
-  "mic-outline",
-  "calendar-outline",
-];
+import { useSelector } from "react-redux";
 
 const PermissionManagerScreen = () => {
   const onClick = () => {
     console.warn("Sign in");
   };
+
+  const { appPermissions } = useSelector((state) => state.userReducer);
 
   return (
     <ScrollView showsVerticalScrollIndicator>
@@ -24,80 +17,20 @@ const PermissionManagerScreen = () => {
         <View style={styles.border}>
           <Text style={styles.text}>App Permissions</Text>
         </View>
-        <AppPermissionItem
-          icon="logo-apple"
-          appName="Apple"
-          permissions={permissions}
-          onpress={onClick}
-        />
-        <AppPermissionItem
-          icon="logo-chrome"
-          appName="Chrome"
-          permissions={permissions}
-          onpress={onClick}
-        />
-        <AppPermissionItem
-          icon="logo-linkedin"
-          appName="LinkedIn"
-          update
-          permissions={permissions}
-          onpress={onClick}
-        />
-        <AppPermissionItem
-          icon="logo-playstation"
-          appName="Playstation"
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-reddit"
-          appName="Reddit"
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-google"
-          appName="Google"
-          update
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-javascript"
-          appName="Javascript"
-          update
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-snapchat"
-          appName="Snapchat"
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-react"
-          appName="React"
-          update
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-twitter"
-          appName="Twitter"
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-xbox"
-          appName="Xbox"
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-dropbox"
-          appName="Dropbox"
-          update
-          permissions={permissions}
-        />
-        <AppPermissionItem
-          icon="logo-youtube"
-          appName="Youtube"
-          update
-          permissions={permissions}
-        />
+        <View>
+          {appPermissions.map((app, index) => {
+            return (
+              <AppPermissionItem
+                icon={app.icon}
+                appName={app.appName}
+                permissions={app.permissions}
+                onpress={onClick}
+                color={app.color}
+                key={index}
+              />
+            );
+          })}
+        </View>
       </SafeAreaView>
     </ScrollView>
   );

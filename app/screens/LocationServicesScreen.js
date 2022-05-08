@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Image,
+  ToastAndroid,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,6 +18,7 @@ import location from "../assets/images/location.png";
 
 const LocationServicesScreen = () => {
   const setUpLocation = () => {
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
     dispatch(setLocation(true));
     navigation.goBack();
   };

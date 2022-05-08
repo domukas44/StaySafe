@@ -5,6 +5,7 @@ import {
   useWindowDimensions,
   View,
   Image,
+  ToastAndroid,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -16,6 +17,7 @@ import cloud from "../assets/images/cloud.png";
 
 const SmartphoneBackupScreen = () => {
   const setUpBackup = () => {
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
     dispatch(setBackup(true));
     navigation.goBack();
   };
