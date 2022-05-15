@@ -18,7 +18,7 @@ import phishing from "../assets/images/phishing.png";
 
 const FishingProtectionScreen = () => {
   const setUpPhishing = () => {
-    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.LONG);
     dispatch(setFishing(true));
     navigation.goBack();
   };

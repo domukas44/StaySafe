@@ -39,7 +39,9 @@ const HomeModal = () => {
     <View style={styles.centeredView}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.header}>Things you should try doing:</Text>
+          <Text style={styles.header}>
+            Things you should set up in order to get started:
+          </Text>
           <View style={styles.guideContainer}>
             {!hasLock && (
               <Pressable style={styles.guideButton} onPress={lock}>
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 30,
     marginBottom: 50,
+    textAlign: "center",
   },
   centeredView: {
     backgroundColor: "#ffffff",

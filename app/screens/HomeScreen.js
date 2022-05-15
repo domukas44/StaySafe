@@ -23,7 +23,7 @@ const color = "#ffbf00";
 const HomeScreen = () => {
   const navigation = useNavigation();
   const adminEnum = { HIGH: "HIGH", LOW: "LOW", MEDIUM: "MEDIUM" };
-  const user = "Dominic";
+  const user = "Dominykas";
 
   const BackUpScreen = "Smartphone Backup";
   const LockScreen = "Smartphone locking";

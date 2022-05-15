@@ -81,8 +81,15 @@ const SettingsScreen = () => {
             placeholder="end hour"
             // value={`${DontGetNotificationsEndTime} h`}
           ></TextInput>
+          <Pressable style={styles.importButton} onPress={() => {}}>
+            <Text style={styles.importText}>Import from calendar</Text>
+          </Pressable>
         </View>
       )}
+
+      <Pressable style={styles.guideButton} onPress={() => {}}>
+        <Text style={styles.guideText}>Save changes</Text>
+      </Pressable>
       <Pressable style={styles.reset} onPress={resetStates}>
         <Text>Reset data</Text>
       </Pressable>
@@ -90,6 +97,30 @@ const SettingsScreen = () => {
   );
 };
 const styles = StyleSheet.create({
+  guideText: {
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+  },
+  guideButton: {
+    marginTop: 20,
+    paddingVertical: 10,
+    backgroundColor: "#2196F3",
+    borderRadius: 20,
+  },
+  importText: {
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 10,
+  },
+  importButton: {
+    marginTop: 20,
+    paddingVertical: 10,
+    backgroundColor: "#00875f",
+    width: "30%",
+    marginLeft: 12,
+  },
   reset: {
     position: "absolute",
     bottom: 20,

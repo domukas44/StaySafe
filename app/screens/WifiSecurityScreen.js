@@ -18,7 +18,7 @@ import wifi from "../assets/images/wifi.png";
 
 const WifiSecurityScreen = () => {
   const setUpWifi = () => {
-    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.LONG);
     dispatch(setWifi(true));
     navigation.goBack();
   };
@@ -48,7 +48,7 @@ const WifiSecurityScreen = () => {
         size={240}
       /> */}
       <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>Scan Wi-fi network</Text>
+        <Text style={styles.buttonText}>Scan Wi-Fi network</Text>
       </Pressable>
       <TouchableOpacity
         onPress={setUpWifi}
@@ -56,7 +56,7 @@ const WifiSecurityScreen = () => {
         disabled={wifiIsScanned}
       >
         <Text style={styles.buttonText}>
-          {wifiIsScanned ? "Wi-fi is safe" : "Scan Wi-fi network"}
+          {wifiIsScanned ? "Wi-fi is safe" : "Scan Wi-Fi network"}
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
