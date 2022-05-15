@@ -23,7 +23,7 @@ const PermissionListScreen = () => {
   const dispatch = useDispatch();
 
   const onAppPermissioDisable = (permission) => {
-    ToastAndroid.show("Nice! You earned 1 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 1 xp", ToastAndroid.LONG);
     dispatch(removePermission({ appName: appName, permission: permission }));
   };
 

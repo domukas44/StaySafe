@@ -18,7 +18,7 @@ import location from "../assets/images/location.png";
 
 const LocationServicesScreen = () => {
   const setUpLocation = () => {
-    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.LONG);
     dispatch(setLocation(true));
     navigation.goBack();
   };

@@ -18,7 +18,7 @@ import lock from "../assets/images/lock.jpg";
 
 const SmartphoneLockScreen = () => {
   const setUpLock = () => {
-    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.LONG);
     dispatch(setLock(true));
     navigation.goBack();
   };

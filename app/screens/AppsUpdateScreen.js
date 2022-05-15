@@ -17,14 +17,14 @@ const AppsUpdateScreen = () => {
   const dispatch = useDispatch();
 
   const onAppUpdate = (appName) => {
-    ToastAndroid.show("Nice! You earned 1 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 1 xp", ToastAndroid.LONG);
     dispatch(updateApp(appName));
   };
 
   const updateAll = () => {
     ToastAndroid.show(
       `Nice! You earned ${appUpdates.length} xp`,
-      ToastAndroid.SHORT
+      ToastAndroid.LONG
     );
     dispatch(updateAllApps());
   };

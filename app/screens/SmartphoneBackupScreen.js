@@ -17,7 +17,7 @@ import cloud from "../assets/images/cloud.png";
 
 const SmartphoneBackupScreen = () => {
   const setUpBackup = () => {
-    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.SHORT);
+    ToastAndroid.show("Nice! You earned 3 xp", ToastAndroid.LONG);
     dispatch(setBackup(true));
     navigation.goBack();
   };
