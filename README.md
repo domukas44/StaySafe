@@ -7,3 +7,7 @@ You can find the app here: https://drive.google.com/file/d/1h2jpAe9ORQk1mqHawZiz
 
 Instructions:
 To install the app simply download it on an Android device and install the .apk file.
+
+You can freely test the prototype. If you would like to reset data of your actions, simply go to settings screen and press reset data button at the bottom right corner of the screen.
+
+Also, you can watch a demo video, where you can see most of the app prototype fucntionality here: https://drive.google.com/file/d/1MPV7Kr8mDuf8NhteOUtM9wk03ni33Cg5/view?usp=sharing
